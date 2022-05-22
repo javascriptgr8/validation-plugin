@@ -47,24 +47,29 @@
 		$("#submit").click(function(){
 			var form=$("#myform");
 
-			$.validator.addMethod("onlyalpha", function (value, element)
-			{
-				if(isNaN(value))
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			});
+			// $.validator.addMethod("onlyalpha", function (value, element)
+			// {
+			// 	if(isNaN(value))
+			// 	{
+			// 		return true;
+			// 	}
+			// 	else
+			// 	{
+			// 		return false;
+			// 	}
+			// });
+
+			$.validator.addMethod('checkname',function(value,element){
+				return value.match(/^[A-Za-z. ]{3,15}$/);
+			},'Enter A valid name');
 
 			form.validate({
 				rules :{
 					name : {
 						required: true,
 						minlength : 3,
-						onlyalpha : true,
+						// onlyalpha : true,
+						checkname : true,
 
 					},
 					email : {
